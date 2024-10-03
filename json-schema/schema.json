@@ -62,7 +62,6 @@
         {"required": ["cordex6:instance_id"]},
         {"required": ["cordex6:latest"]},
         {"required": ["cordex6:nominal_resolution"]},
-        {"required": ["cordex6:pid"]},
         {"required": ["cordex6:replica"]},
         {"required": ["cordex6:retracted"]},
         {"required": ["cordex6:updated"]},
@@ -92,9 +91,6 @@
           "description": "Is latest version"
         },
         "cordex6:nominal_resolution": {
-          "type": "string"
-        },
-        "cordex6:pid": {
           "type": "string"
         },
         "cordex6:replica": {
