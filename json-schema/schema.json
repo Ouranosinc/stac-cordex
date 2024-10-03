@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/template/v1.0.0/schema.json#",
-  "title": "Template Extension",
-  "description": "STAC Template Extension for STAC Items and STAC Collections.",
+  "$id": "https://ouranosinc.github.io/stac-cordex/main/json-schema/schema.json#",
+  "title": "CORDEX CMIP6 Extension",
+  "description": "STAC CORDEX CMIP6 Extension for STAC Items.",
   "oneOf": [
     {
-      "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
+      "$comment": "This is the schema for STAC Items.",
       "allOf": [
         {
           "$ref": "#/definitions/stac_extensions"
@@ -24,118 +24,15 @@
             "properties": {
               "allOf": [
                 {
-                  "$comment": "Require fields here for Item Properties.",
-                  "required": [
-                    "template:new_field"
-                  ]
+                  "$ref":  "cmip6-cordex-global-attrs-schema.json"
+                },
+                {
+                  "$ref": "#/definitions/require_any_field"
                 },
                 {
                   "$ref": "#/definitions/fields"
                 }
               ]
-            },
-            "assets": {
-              "$comment": "This validates the fields in Item Assets, but does not require them.",
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "$comment": "This is the schema for STAC Collections.",
-      "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "type"
-          ],
-          "properties": {
-            "type": {
-              "const": "Collection"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        }
-      ],
-      "anyOf": [
-        {
-          "$comment": "This is the schema for the top-level fields in a Collection. Remove this if this extension does not define top-level fields for Collections.",
-          "allOf": [
-            {
-              "$comment": "Require fields here for Collections (top-level).",
-              "required": [
-                "template:new_field"
-              ]
-            },
-            {
-              "$ref": "#/definitions/fields"
-            }
-          ]
-        },
-        {
-          "$comment": "This validates the fields in Collection Assets, but does not require them.",
-          "required": [
-            "assets"
-          ],
-          "properties": {
-            "assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "allOf": [
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "This is the schema for the fields in Item Asset Definitions. It doesn't require any fields.",
-          "required": [
-            "item_assets"
-          ],
-          "properties": {
-            "item_assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "allOf": [
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "This is the schema for the fields in Summaries. By default, only checks the existence of the properties, but not the schema of the summaries.",
-          "required": [
-            "summaries"
-          ],
-          "properties": {
-            "summaries": {
-              "$ref": "#/definitions/require_any_field"
             }
           }
         }
@@ -152,7 +49,7 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/template/v1.0.0/schema.json"
+            "const": "https://ouranosinc.github.io/stac-cordex/main/json-schema/schema.json"
           }
         }
       }
@@ -160,42 +57,63 @@
     "require_any_field": {
       "$comment": "Please list all fields here so that we can force the existence of one of them in other parts of the schemas.",
       "anyOf": [
-        {"required": ["template:new_field"]},
-        {"required": ["template:xyz"]},
-        {"required": ["template:another_one"]}
+        {"required": ["cordex6:access"]},
+        {"required": ["cordex6:index_node"]},
+        {"required": ["cordex6:instance_id"]},
+        {"required": ["cordex6:latest"]},
+        {"required": ["cordex6:nominal_resolution"]},
+        {"required": ["cordex6:pid"]},
+        {"required": ["cordex6:replica"]},
+        {"required": ["cordex6:retracted"]},
+        {"required": ["cordex6:updated"]},
+        {"required": ["cordex6:variable_long_name"]},
+        {"required": ["cordex6:variable_units"]}
       ]
     },
     "fields": {
       "$comment": "Add your new fields here. Don't require them here, do that above in the corresponding schema.",
       "type": "object",
+
       "properties": {
-        "template:new_field": {
+        "cordex6:access": {
+          "type": "array",
+          "description": "Access to the data"
+        },
+        "cordex6:index_node": {
+          "type": "string",
+          "description": "Index node"
+        },
+        "cordex6:instance_id": {
+          "type": "string",
+          "description": "Instance ID"
+        },
+        "cordex6:latest": {
+          "type": "boolean",
+          "description": "Is latest version"
+        },
+        "cordex6:nominal_resolution": {
           "type": "string"
         },
-        "template:xyz": {
-          "type": "object",
-          "required": [
-            "x",
-            "y",
-            "z"
-          ],
-          "properties": {
-            "x": {
-              "type": "number"
-            },
-            "y": {
-              "type": "number"
-            },
-            "z": {
-              "type": "number"
-            }
-          }
+        "cordex6:pid": {
+          "type": "string"
         },
-        "template:another_one": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          }
+        "cordex6:replica": {
+          "type": "boolean",
+          "description": "Is a replica"
+        },
+        "cordex6:retracted": {
+          "type": "boolean",
+          "description": "Has been retracted"
+        },
+        "cordex6:updated": {
+          "type": "boolean",
+          "description": "Has been updated"
+        },
+        "cordex6:variable_long_name": {
+          "type": "string"
+        },
+        "cordex6:variable_units": {
+          "type": "string"
         }
       },
       "patternProperties": {
