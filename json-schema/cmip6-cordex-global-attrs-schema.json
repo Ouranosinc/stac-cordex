@@ -5,7 +5,7 @@
   "description": "JSON schema for global attributes of CORDEX-CMIP6 datasets. This schema is automatically generated from the CVs. Manual edits will be overwritten.",
   "type": "object",
   "properties": {
-    "activity_id": {
+    "cordex6:activity_id": {
       "enum": [
         "DD",
         "ESD"
@@ -21,7 +21,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "domain_id": {
+    "cordex6:domain_id": {
       "enum": [
         "SAM-50",
         "CAM-50",
@@ -81,7 +81,7 @@
     "cordex6:domain": {
       "type": "string"
     },
-    "driving_experiment_id": {
+    "cordex6:driving_experiment_id": {
       "enum": [
         "evaluation",
         "historical",
@@ -95,7 +95,7 @@
     "cordex6:driving_experiment": {
       "type": "string"
     },
-    "driving_institution_id": {
+    "cordex6:driving_institution_id": {
       "enum": [
         "AER",
         "AS-RCEC",
@@ -152,7 +152,7 @@
         "UofT"
       ]
     },
-    "driving_source_id": {
+    "cordex6:driving_source_id": {
       "enum": [
         "4AOP-v1-5",
         "ACCESS-CM2",
@@ -291,7 +291,7 @@
     "cordex6:driving_variant_label": {
       "type": "string"
     },
-    "frequency": {
+    "cordex6:frequency": {
       "enum": [
         "1hr",
         "3hr",
@@ -308,7 +308,7 @@
     "cordex6:institution": {
       "type": "string"
     },
-    "institution_id": {
+    "cordex6:institution_id": {
       "enum": [
         "BCCR-UCAN",
         "BOM",
@@ -331,7 +331,7 @@
         "UQ-DEC"
       ]
     },
-    "license": {
+    "cordex6:license": {
       "enum": [
         "https://cordex.org/data-access/cordex-cmip6-data/cordex-cmip6-terms-of-use"
       ]
@@ -342,7 +342,7 @@
     "cordex6:product": {
       "type": "string"
     },
-    "project_id": {
+    "cordex6:project_id": {
       "enum": [
         "CORDEX"
       ]
@@ -350,7 +350,7 @@
     "cordex6:source": {
       "type": "string"
     },
-    "source_id": {
+    "cordex6:source_id": {
       "enum": [
         "CCAM-v2105",
         "CCAM-v2112",
@@ -367,7 +367,7 @@
         "WRF451Q"
       ]
     },
-    "source_type": {
+    "cordex6:source_type": {
       "enum": [
         "ARCM",
         "AORCM",
